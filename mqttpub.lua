@@ -1,28 +1,21 @@
-if not dat.broker then return end
-local list = {'isswitch'}
+local pubnow
+local lwth = {} 
 local count = 0
-local pubnow, ddt
-for _, v in ipairs(list) do
-	ddt = dat[v] == 1 and 'On' or 'Off'
-	wth[v] = ddt
-	-- wth[v] = dat[v]
-	--print(wth[v], ddt)
-end 
-wth.light = dat.light
-for _ in ipairs(debug.getregistry()) do  count = count + 1 end
-wth.reg = count
-wth.heap = node.heap()
-
 pubnow = function(top, dt)
-	top, dt = next(wth, top)
+	top, dt = next(lwth, top)
+	if top then prt('Send:', top, dt) end
 	if top and dat.broker then
-		m:publish(dat.clnt..'/'..top, dt, 2, 0, function() return pubnow(top) end)
+		m:publish(dat.clnt..'/'..top, dt, 2, 0, function() if pubnow then pubnow(top) end end)
 	else
-		-- print(wth.heap, wth.reg)
-		ddt, list, top, dt, count = nil, nil, nil, nil, nil
-		--wth = {}
-		--wth.reg, wth.heap, wth.ver = nil, nil, nil 
-		if dat.boot then return (function() dofile'sendboot.lua'end)() end
+		if dat.boot then dofile('sendboot.lua') end
 	end
 end
-return pubnow()
+return function(tb) 
+	if not dat.broker or not m then print('Lost Broker') return end
+	if tb then lwth = tb end
+	for _ in pairs(debug.getregistry()) do  count = count + 1 end
+	lwth.reg = count
+	lwth.heap = node.heap()
+	print("Heap:", lwth.heap, "Reg:", lwth.reg)
+	pubnow() 
+end

@@ -18,6 +18,15 @@ if top and dt ~= "" then
 			print("Restart Now")
 			restartnow()
 		end
+	elseif top == "ajaxsecure" then
+		print("analize:", top, dt)
+		if dt == "On" and wth.secure == "Off" then
+			wth.secure = "On"
+			print("Start Switch OFF Waterboss")
+		elseif dt == "Off" and wth.secure == "On" then
+			print("Start Switch ON Waterboss")
+		end
+	
 	else
 		return
 	end

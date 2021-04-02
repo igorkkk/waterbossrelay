@@ -1,4 +1,8 @@
 local runfile = "setglobals.lua"
+dbug = true
+prt = function(...)
+	if dbug then print(...) end
+end
 
 if rtcmem.read32(0) == 501 then
 	print("Try Start Server!")
