@@ -4,7 +4,7 @@ function subscribe(con)
     l.on()
     dat.broker = true
     con:subscribe(dat.clnt.."/com/#", 0)
-    con:subscribe("ajaxstate/ajaxsecure", 0)
+    --con:subscribe("ajaxstate/ajaxsecure", 0)
     con:publish(dat.clnt..'/state', "On", 0, 1)
     print("\n\nSubscribed to "..dat.clnt.."/com/# \najaxstate/ajaxsecure \nHeap: "..node.heap())    
 end

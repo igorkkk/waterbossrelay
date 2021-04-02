@@ -16,7 +16,8 @@ end
 
 M.on = function(on)
 	M.kill()
-	on = on or 0
+	on = on or 1
+	on = on == 0 and 1 or 0
 	gpio.write(M.pin, on)
 end
 M.flash = function(fl)

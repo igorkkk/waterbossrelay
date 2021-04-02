@@ -11,11 +11,10 @@ pubnow = function(top, dt)
 	end
 end
 return function(tb) 
-	if not dat.broker or not m then print('Lost Broker') return end
+	if not dat.broker or not m then prt('Lost Broker') return end
 	if tb then lwth = tb end
 	for _ in pairs(debug.getregistry()) do  count = count + 1 end
 	lwth.reg = count
 	lwth.heap = node.heap()
-	print("Heap:", lwth.heap, "Reg:", lwth.reg)
 	pubnow() 
 end
