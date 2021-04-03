@@ -24,6 +24,14 @@ if top and dt ~= "" then
 		elseif dt == "Off" then
 			wth.auto = 'Off'
 		end
+		dofile("mqttpub.lua")(wth)
+	elseif top == "relay" and wth.auto == 'Off' then
+		if dt == "On" then
+			switch(1)
+		elseif dt == "Off" then
+			switch(0)
+		end
+		dofile("mqttpub.lua")(wth)
 	elseif top == "ajaxsecure" and wth.auto == 'On'  then
 		if dt == "On" and wth.secure == "Off" then
 			wth.secure = "On"

@@ -1,12 +1,19 @@
 worktmr = tmr.create()
 bosstmr = tmr.create()
+
 --------------------
 
 workrelay = function(t)
     t:stop()
     if wth.relay == 'Off' then
-        t:interval(dat.shorttime * 1000)
-        switch(1)
+        if dat.hcounter < 12 then
+            dat.hcounter = dat.hcounter + 1
+            prt('Next Hour', dat.hcounter)
+        else
+            dat.hcounter = 0
+            t:interval(dat.shorttime * 1000)
+            switch(1)
+        end
     elseif wth.relay == 'On' then
         t:interval(dat.longtime * 1000)
         switch(0)

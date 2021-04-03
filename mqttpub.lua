@@ -1,9 +1,10 @@
+prt('\nmqtt pub:')
 local pubnow
 local lwth = {} 
 local count = 0
 pubnow = function(top, dt)
 	top, dt = next(lwth, top)
-	if top then prt('Send:', top, dt) end
+	if top then prt(top, dt) end
 	if top and dat.broker then
 		m:publish(dat.clnt..'/'..top, dt, 2, 0, function() if pubnow then pubnow(top) end end)
 	else

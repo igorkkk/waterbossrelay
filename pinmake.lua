@@ -1,17 +1,18 @@
----------------
-if not dat then dat = {}; dat.pinread = 3 end
----------------
 
 pintmr = tmr.create()
 function analizepin( )
 	gpio.trig(dat.pinread)
 	print('trig!')
-	if dat.isswitch == 0 then
+	if wth.relay == "Off" then
 		switch(1)
+		wth.auto = 'Off'
 	else
-		switch(0)
+		--switch(0)
+		wth.auto = 'On'
+		wth.isboss = "On"
 	end
 	pintmr:start()
+	dofile("mqttpub.lua")(wth)
 end
 
 startpin = function()

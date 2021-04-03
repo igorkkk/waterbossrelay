@@ -1,4 +1,5 @@
 dat = {}
+dat.hcounter = 1
 if not wth then wth = {} end
 dofile'_setuser.lua'
 
@@ -25,6 +26,7 @@ l.set(7)
 dat.pinread = 3
 prt('Client :', dat.clnt)
 dat.boot = true
+-- dofile'pinmake.lua'
 dofile'mqttset.lua'
 dofile'main.lua'
 
