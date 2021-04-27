@@ -1,2 +1,2 @@
-local a = 'waterbossrelay'
+local a = 'waterbossrelay(justswitch)'
 print(a) return a 

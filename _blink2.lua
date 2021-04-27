@@ -1,9 +1,20 @@
 local M = {}
 M.pin = 7
 M.lt = 0
-M.shem = {
-	{1,0,1,0,1,0,0,0,0}
-}
+M.shem = {}
+M.shem[1] =	{1,0,1,0,1,0,0,0,0}
+M.count = 1
+M.nosch = 1
+
+M.tcr = function(int, no)
+    int = int or 5
+    no = no or 1
+    local tm = tmr.create()
+    tm.register(int*1000, tmr.ALARM_SEMI, function (t)
+
+    end)
+    return tm
+end
 M.setpin = function(pin)
 	M.pin = pin or M.pin
 	gpio.mode(M.pin, gpio.OUTPUT)

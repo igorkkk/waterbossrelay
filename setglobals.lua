@@ -1,27 +1,22 @@
 dat = {}
-dat.hcounter = 1
 if not wth then wth = {} end
 dofile'_setuser.lua'
 
 wth.secure = "Off"
-wth.isboss = "On"
 wth.relay = 'Off'
 wth.auto = 'On'
 
---[[
-	Sonoff:
-	BUTTON = 3
-	RELAY = 6
-	LED1 = 7
---]]
+-- ####### Sonoff Pins ######## --
+-- BUTTON = 3
+-- RELAY = 6
+-- LED1 = 7
 
-pins = {
-	relay = 6,
-}
+pins = { relay = 6 }
 gpio.mode(pins.relay, gpio.OUTPUT)
 
 l = require('_blink')
-l.set(7)
+l.setpin(7)
+
 --l.on(1)
 dat.pinread = 3
 prt('Client :', dat.clnt)
