@@ -1,31 +1,25 @@
 -- Sample:
 -- dofile('_test_blink.lua')(20, {1,0,1,0,0,0,0}):start()
 -- stop = true
-
-local pin = 7
-local schm = {1,0}
 stop = false
-local count = 1
-
+local pin = 7
 gpio.mode(pin, gpio.OUTPUT)
 gpio.write(pin, gpio.LOW)
 
 return function(int, sm)
-    int = int or 5
-    sm = sm or schm
+    int = int or 500
+    sm = sm or {1,0}
     local count = 1
     local tm = tmr.create()
     local d = 0
-    tm:register(200, tmr.ALARM_AUTO, function (t)
+    tm:register(int, tmr.ALARM_AUTO, function (t)
         if stop then
+            stop = nil
             gpio.write(pin, 0)
-            t:stop(); t:unregister()
-            pin, schm, stop, count, t, int, no, count, tm, d = nil
-            print('Blink Stopped')
+            t:stop() t:unregister() t = nil
             return
         end
-        d = sm[count]
-        gpio.write(pin, d)
+        gpio.write(pin, sm[count])
         count = (count == #sm) and 1 or (count + 1)
     end)
     return tm
