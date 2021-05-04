@@ -1,5 +1,5 @@
 return function(subscribe, merror, msg)
-    m = mqtt.Client(dat.clnt, 25, dat.clnt, 'pass22')
+    m = mqtt.Client(dat.clnt, 45, dat.clnt, 'pass22')
     m:lwt(dat.clnt..'/state', "Off", 0, 1)
     m:on("offline", merror)
     m:on("message", msg)

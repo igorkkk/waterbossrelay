@@ -14,10 +14,10 @@ wth.auto = 'On'
 pins = { relay = 6 }
 gpio.mode(pins.relay, gpio.OUTPUT)
 pins.pinread = 3
+pins.blink = 7
 
 l = require('_blink')
-l.setpin(7)
---l.on(1)
+l.setpin(pins.blink)
 
 prt('Client :', dat.clnt)
 dat.boot = true
