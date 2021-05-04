@@ -1,22 +1,20 @@
 
 pintmr = tmr.create()
 function analizepin( )
-	gpio.trig(dat.pinread)
-	print('trig!')
+	gpio.trig(pins.pinread)
+	prt('trig!')
+	wth.auto = 'Off'
 	if wth.relay == "Off" then
 		switch(1)
-		wth.auto = 'Off'
 	else
-		--switch(0)
-		wth.auto = 'On'
-		wth.isboss = "On"
+		switch(0)
 	end
 	pintmr:start()
 	dofile("mqttpub.lua")(wth)
 end
 
 startpin = function()
-	gpio.trig(dat.pinread, 'down', analizepin)
+	gpio.trig(pins.pinread, 'down', analizepin)
 end
 
 pintmr:register(2000, tmr.ALARM_SEMI, startpin)

@@ -12,7 +12,6 @@ if rtcmem.read32(0) == 501 then
 	else
 		print('No IDE, Restart!')
 	end
-
 else
 	print("Try Run ", runfile)
 	tmr.create():alarm(2500, 0, function()
