@@ -2,9 +2,7 @@ dat = {}
 wth = {}
 dofile'_setuser.lua'
 
-wth.secure = "Off"
 wth.relay = 'Off'
-wth.auto = 'On'
 
 -- ####### Sonoff Pins ######## --
 -- BUTTON = 3
@@ -29,7 +27,7 @@ function switch(run)
 	l.on(run)
 	dofile('mqttpub.lua')(wth)
 end
-switch(1)
+switch(0)
 
 dofile'pinmake.lua'
 dofile'mqttset.lua'

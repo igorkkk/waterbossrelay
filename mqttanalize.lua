@@ -18,34 +18,12 @@ if comtb[1] == "ide" then
 		restartnow()
 	end
 
-elseif comtb[1] == "auto" then
-	if comtb[2] == "On" then
-		wth.auto = 'On'
-	end
-
-	if wth.secure == "Off" then
-		switch(1)
-	else
-		switch(0)
-	end
-	dofile("mqttpub.lua")(wth)
 elseif comtb[1] == "relay" then
-	wth.auto = 'Off'
 	if comtb[2] == "On" then
 		switch(1)
 	elseif comtb[2] == "Off" then
 		switch(0)
 	end
 	dofile("mqttpub.lua")(wth)
-elseif comtb[1] == "ajaxsecure" and wth.auto == 'On'  then
-	if comtb[2] == "On" and wth.secure == "Off" then
-		wth.secure = "On"
-		print("Relay to OFF")
-		switch(0)
-	elseif comtb[2] == "Off" and wth.secure == "On" then
-		wth.secure = "Off"
-		print("Relay to ON")
-		switch(1)
-	end
 end
 comtb, killtop = nil,nil

@@ -17,5 +17,5 @@ return function(tb)
 	for _ in pairs(debug.getregistry()) do  count = count + 1 end
 	lwth.reg = count
 	lwth.heap = node.heap()
-	pubnow() 
+	pubnow()
 end
