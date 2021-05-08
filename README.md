@@ -11,3 +11,9 @@
 Без выкрутасов с временными включениями, реле просто включается при снятии с охраны, выключается при постановке - в ветке **[justswitch][1]**
 
 [1]: https://github.com/igorkkk/waterbossrelay/tree/justswitch 
+
+***
+
+Полностью **ручное** переключение только через MQTT брокер и кнопкой на корпусе - в ветке **[onlyswitch][2]**
+
+[2]: https://github.com/igorkkk/waterbossrelay/tree/onlyswitch
