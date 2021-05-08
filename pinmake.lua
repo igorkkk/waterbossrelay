@@ -3,7 +3,6 @@ pintmr = tmr.create()
 function analizepin( )
 	gpio.trig(pins.pinread)
 	prt('trig!')
-	wth.auto = 'Off'
 	if wth.relay == "Off" then
 		switch(1)
 	else
@@ -19,3 +18,4 @@ end
 
 pintmr:register(2000, tmr.ALARM_SEMI, startpin)
 pintmr:start()
+l.on(0)

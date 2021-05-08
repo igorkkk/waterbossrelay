@@ -1,7 +1,6 @@
 do
 local subscribe, merror, mconnect, msg
 function subscribe(con)
-    l.on()
     dat.broker = true
     con:subscribe(dat.clnt.."/com/#", 0)
     con:publish(dat.clnt..'/state', "On", 0, 1)
@@ -9,7 +8,6 @@ function subscribe(con)
 end
 
 function merror(con, reason)
-    l.on(1)
     dat.broker = false
     print('MQTT Error now!')
     if con then con:close() end
