@@ -10,7 +10,7 @@
 
 Без выкрутасов с временными включениями, реле просто включается при снятии с охраны, выключается при постановке, а также, если задано, по времени - в ветке **[justswitch][1]**
 
-[1]: https://github.com/igorkkk/waterbossrelay/tree/justswitch 
+[1]: https://github.com/igorkkk/waterbossrelay/tree/justswitch
 
 ***
 
