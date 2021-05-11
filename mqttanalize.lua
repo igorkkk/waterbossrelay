@@ -14,7 +14,7 @@ end
 
 if comtb[1] == "ide" then
 	if comtb[2] == "On" then
-		print("Restart Now")
+		prt("Restart Now")
 		restartnow()
 	end
 
@@ -37,14 +37,24 @@ elseif comtb[1] == "relay" then
 		switch(0)
 	end
 	dofile("mqttpub.lua")(wth)
+elseif comtb[1] == "relaytime" then
+	if comtb[2] == "On" then
+		wth.relaytime = 'On'
+	elseif comtb[2] == "Off" then
+		wth.relaytime = 'Off'
+		switch(1)
+		prt("Relay to ON")
+	end
+	dofile("mqttpub.lua")(wth)
+
 elseif comtb[1] == "ajaxsecure" and wth.auto == 'On'  then
 	if comtb[2] == "On" and wth.secure == "Off" then
 		wth.secure = "On"
-		print("Relay to OFF")
+		prt("Relay to OFF")
 		switch(0)
 	elseif comtb[2] == "Off" and wth.secure == "On" then
 		wth.secure = "Off"
-		print("Relay to ON")
+		prt("Relay to ON")
 		switch(1)
 	end
 end
