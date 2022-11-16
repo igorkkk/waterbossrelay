@@ -3,6 +3,6 @@ return function(subscribe, merror, msg)
     m:lwt(dat.clnt..'/state', "Off", 0, 1)
     m:on("offline", merror)
     m:on("message", msg)
-    print('Connect to', dat.brk, 'Heap', node.heap())
+    print('Connect to', dat.brk, '\nHeap', node.heap())
     m:connect(dat.brk, dat.port, false, subscribe, merror)
 end

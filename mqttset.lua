@@ -1,7 +1,7 @@
 do
 local subscribe, merror, mconnect, msg
 function subscribe(con)
-    l.on()
+    -- l.on()
     dat.broker = true
     con:subscribe(dat.clnt.."/com/#", 0)
     con:subscribe("ajaxstate/ajaxsecure", 0)
@@ -10,16 +10,21 @@ function subscribe(con)
 end
 
 function merror(con, reason)
-    l.on(1)
+    -- l.on(1)
     dat.broker = false
-    print('MQTT Error now!')
+    print('\nMQTT Error now. Lock Garage.\n')
+    switch(pins.relaySec, 0)
     if con then con:close() end
     if m then m:close() end
     do local ct = 0; for k,v in pairs(debug.getregistry()) do ct = ct + 1 end; print('Length = '..ct, 'Heap = '..node.heap()) end
     con, reason, m, ct = nil,nil,nil,nil
-    tmr.create():alarm(20000, tmr.ALARM_SINGLE, mconnect)
+    if not getmqtt then
+        getmqtt = tmr.create()
+        getmqtt:alarm(20000, tmr.ALARM_SINGLE, mconnect)
     return collectgarbage()
+    end
 end
+
 function msg(con, top, dt)
 	if not killtop then killtop = {} end
     top = string.match(top, "/(%w+)$")
@@ -31,9 +36,11 @@ function msg(con, top, dt)
         end
     end
 end
+
 function mconnect(t)
+    getmqtt = nil
     t = nil 
-    if (wifi.sta.getip()) then   
+    if (wifi.sta.getip()) then
         return dofile('mqttmake.lua')(subscribe, merror, msg)
     else
         return merror()

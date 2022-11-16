@@ -1,9 +1,9 @@
 local M = {}
-M.pin = 7
+M.pin = 1
 M.lt = 0
-M.shem = {
-	{1,0,1,0,1,0,0,0,0}
-}
+-- M.shem = {
+-- 	{1,0,1,0,1,0,0,0,0}
+-- }
 M.setpin = function(pin)
 	M.pin = pin or M.pin
 	gpio.mode(M.pin, gpio.OUTPUT)
