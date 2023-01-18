@@ -40,3 +40,7 @@ luac.out
 *.hex
 
 wifi.lua
+/.output
+/.vscode
+/test
+/WareHouse
