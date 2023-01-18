@@ -1,4 +1,5 @@
 dat = {}
+dat.boot = true
 wth = {}
 dbug = true
 prt = function(...)
@@ -12,37 +13,31 @@ wth.relaySec = 'Off'
 wth.relayOpen = 'Off'
 wth.auto = 'On'
 
-
 -- ####### Relay Pins ######## --
 
 -- BUTTON = 
--- RELAY01 = 0
--- RELAY02 = 5
--- RELAY03 = 6
--- RELAY04 = 7
-
--- LED1 = 1
+-- RELAY01 = 0	-- GPIO16
+-- RELAY02 = 5  -- GPIO14
+-- RELAY03 = 6  -- GPIO12
+-- RELAY04 = 7 	-- GPIO13
+-- LED = 1		-- GPIO5
 
 -- ########################### --
 
-
-
 pins = {
-	relaySec = 5,
-	relayOpen = 6 
+	relaySec = 5,	-- GPIO14
+	relayOpen = 6,	-- GPIO12
+	pinread = 8,	-- GPIO15
+	blink = 1,  	-- GPIO5
+	ds18 = 4		-- GPIO2
 }
 
 gpio.mode(pins.relaySec, gpio.OUTPUT)
 gpio.mode(pins.relayOpen, gpio.OUTPUT)
--- pins.pinread = 3
-pins.blink = 1
-pins.ds18 = 4
+gpio.mode(pins.relaySec, gpio.INPUT)
 
 l = require('_blink')
 l.setpin(pins.blink)
-
-prt('Client :', dat.clnt)
-dat.boot = true
 
 -- Функция переключения любого реле
 function switch(rel, run)
